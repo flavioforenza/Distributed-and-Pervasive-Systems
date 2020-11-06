@@ -1,0 +1,57 @@
+syntax = "proto3";
+package subpackage;
+
+message HelloRequest {
+    int32 id = 1;
+    string ip= 2;
+    int32 porta= 3;
+}
+
+message Response {
+    string status =1;
+}
+
+message SendStatistics{
+    int32 id =1;
+    double media = 2;
+    int64 timestamp= 3;
+}
+
+message RemoveCasa{
+    int32 id=1;
+    string message=2;
+}
+
+message RequestBoost{
+    string resource=1;
+    int32 id=2;
+    int64 timestamp=3;
+}
+
+message ResponseBoost{
+    int32 id =1;
+    string status=2;
+}
+
+message UpdateBoost{
+    string message = 1;
+}
+
+service GreetingService {
+
+    rpc Message (HelloRequest) returns (Response);
+
+    rpc streamStatistics (stream SendStatistics) returns (Response);
+
+    rpc Exit (RemoveCasa) returns (Response);
+
+    rpc Boost (RequestBoost) returns (ResponseBoost);
+
+    rpc updateBoost(UpdateBoost) returns (ResponseBoost);
+
+}
+
+
+
+
+

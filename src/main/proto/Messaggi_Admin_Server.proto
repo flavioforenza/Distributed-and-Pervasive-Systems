@@ -1,0 +1,14 @@
+syntax = "proto3";
+package Admin_Server;
+
+message sendNotification{
+    string notification =1;
+}
+
+message receiveNotification{
+    string responseNotification = 1;
+}
+
+service AdminServer{
+    rpc streamNotify(stream sendNotification) returns (receiveNotification);
+}
